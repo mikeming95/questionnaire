@@ -1,0 +1,109 @@
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+
+  </head>
+
+  <body>
+    <div align="center">
+      <h1>Admin</h1>
+    </div>
+
+  <div id="menu" style="background-color:#EEEEEE;width:300px;float:left;margin-left:3%;">
+
+    <div>
+      <h3>Download</h3>
+      <button  type="button" style="" class="btn" onclick="download_question();">下载question.csv文件</button>
+      <br>
+      <button  type="button" style="margin-top:5px" class="btn" onclick="record_question();">下载record.csv文件</button>
+      <br>
+      <button  type="button" style="margin-top:5px" class="btn" onclick="suggestion_question();">下载suggestion.csv文件</button>
+
+    </div>
+
+    <div style="margin-top:2%">
+      <h3>Upload</h3>
+
+      <b>更新question.csv</b><br>
+      <a>请以question.csv格式/名字上传</a>
+      <form  action="/myadmin/upload/question" method="post" enctype="multipart/form-data">
+          <input type="file" name="question"><br>
+          <input type="submit" value="提交">
+      </form>
+
+      <b>更新suggestion.csv</b><br>
+      <a>请以suggestion.csv格式/名字上传</a>
+      <form  action="/myadmin/upload/suggestion" method="post" enctype="multipart/form-data">
+          <input type="file" name="suggestion"><br>
+          <input type="submit" value="提交">
+      </form>
+    </div>
+</div>
+
+
+      <div id="content" style="background-color:#EEEEEE;height:800px;width:50%;float:left;margin-left:3%;">
+        <table border="1">
+        <caption>Record.csv</caption>
+        {% for i in content.record %}
+        <tr>
+          {% for j in i %}
+           <td>
+            <a>{{j}}</a>
+            </td>
+            {% endfor %}
+            <td>
+              {% if forloop.counter > 1 %}
+              <a href="/myadmin/delete/{{forloop.counter}}">delete</a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        </table>
+
+        <div style="margin-top:2%">
+        <table border="1">
+        <caption>Question.csv</caption>
+        {% for i in content.data %}
+        <tr>
+          {% for j in i %}
+           <td>
+            <a>{{j}}</a>
+            </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+        </table>
+        </div>
+
+        <div style="margin-top:2%">
+        <table border="1">
+        <caption>Suggestion.csv</caption>
+        {% for i in content.suggestion %}
+        <tr>
+          {% for j in i %}
+           <td>
+            <a>{{j}}</a>
+            </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+        </table>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    function download_question(){
+      window.open("/static/9aoze2f2e0/question.csv");
+    }
+    function record_question(){
+      window.open("/static/9aoze2f2e0/record.csv");
+    }
+    function suggestion_question(){
+      window.open("/static/9aoze2f2e0/suggestion.csv");
+    }
+  </script>
+
+</html>

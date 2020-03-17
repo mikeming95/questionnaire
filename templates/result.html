@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title>問卷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+
+  </head>
+  <style>
+      body {
+          font-family: "microsoft yahei";
+          background: #ebedf0;
+          min-width: 100%;
+      }
+
+      @media screen and (min-width:1200px){
+        .pcmain{
+           background:#fff;
+           width:50%;
+           padding:0 5%;
+           margin: 0 auto;
+
+       }
+      }
+      @media screen and (max-width:1200px){
+        .pcmain{
+           background:#fff;
+           width:60%;
+           padding:0 5%;
+           margin: 0 auto;
+       }
+      }
+
+      @media screen and (max-width:800px){
+        .pcmain{
+           background:#fff;
+           width:75%;
+           padding:0 5%;
+           margin: 0 auto;
+       }
+      }
+      #toptitle{
+          padding-top:5%;
+      }
+      #toptitle .htitle {
+          font-size: 32px;
+          line-height: 32px;
+          font-weight: bold;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+      }
+      .bottom{
+        margin: 0;
+        padding: 2%;
+        text-align: center;
+        color: #AAAAAA;
+      }
+      .content1{
+        margin-left: 10%;
+        margin-top: 5%;
+        font-size: 160%;
+      }
+      .content2{
+        margin-left: 10%;
+        margin-top: 1%;
+        font-size: 160%;
+      }
+  </style>
+
+  <body>
+    <div class="pcmain">
+      <div id="toptitle">
+          <h1 class="htitle" id="htitle">結果</h1>
+      </div>
+
+      <div class="content1">
+        <a>分数:{{content.sum}}</a><br>
+        <a>建议:</a>
+      </div>
+      <div class="content2">
+        <a>{{content.suggestion}}</a>
+      </div>
+
+
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+    <div class="bottom">
+        ABC Limited
+    </div>
+    <br>
+  </body>
+</html>

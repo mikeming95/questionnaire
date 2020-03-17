@@ -1,0 +1,41 @@
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+  </head>
+  <style>
+  body {
+      font-family: "microsoft yahei";
+      background: #ebedf0;
+      min-width: 100%;
+  }
+  .password{
+    margin-top:0px;
+    padding:4px 20px;
+  }
+
+  .btn{
+    margin-top:25px;
+    padding: 5px 2%;
+  }
+  .form{
+    font-size:120%;
+    padding: 13% 0px;
+  }
+  </style>
+  <body>
+      <div align="center">
+        <form class="form" action="/myadmin/login" method="post" >
+          <h1>Admin</h1>
+          <div>
+            <input class="password" required  type="password"  placeholder="password" id="password" name="password" maxlength="20"/>
+          </div>
+          <div class="sub">
+            <input  type="submit" class="btn" value="submit">
+           </div>
+        </form>
+      </div>
+  </body>
+
+</html>

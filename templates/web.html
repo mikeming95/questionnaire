@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title>問卷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+  </head>
+  <style>
+      body {
+          font-family: "microsoft yahei";
+          background: #ebedf0;
+          min-width: 100%;
+      }
+
+      @media screen and (min-width:1200px){
+        .pcmain{
+           background:#fff;
+           width:50%;
+           padding:0 5%;
+           margin: 0 auto;
+       }
+      }
+      @media screen and (max-width:1200px){
+        .pcmain{
+           background:#fff;
+           width:60%;
+           padding:0 5%;
+           margin: 0 auto;
+       }
+      }
+
+      @media screen and (max-width:800px){
+        .pcmain{
+           background:#fff;
+           width:75%;
+           padding:0 5%;
+           margin: 0 auto;
+       }
+      }
+
+
+     #toptitle{
+         padding-top:5%;
+     }
+     #toptitle .htitle {
+         font-size: 32px;
+         line-height: 32px;
+         font-weight: bold;
+         margin: 0;
+         padding: 0;
+         text-align: center;
+     }
+     .topic__dottedLine {
+         border-top: 1px dashed #c2c2c2;
+     }
+
+     .topic__inner {
+         padding: 0 2%;
+     }
+     .question{
+       font-size:120%;
+       padding: 0 2%;
+     }
+     .bottom{
+       margin: 0;
+       padding: 2%;
+       text-align: center;
+       color: #AAAAAA;
+     }
+     .sub{
+      padding: 30px 0;
+     }
+     .qlist{
+       padding: 0 20px;
+     }
+     .qtitle{
+       font-weight:900;
+     }
+     .btn{
+      background-color: #CCCCFF;
+      padding:6px 23px;
+      border-radius:5px;
+     }
+     .inputf{
+       margin-left:1%;
+     }
+     .inputbox{
+       line-height:5px;
+     }
+  </style>
+  <body>
+    <div class="pcmain">
+      <div id="toptitle">
+          <h1 class="htitle" id="htitle">調查問卷</h1>
+      </div>
+      <div class="topic__inner">
+          <div class="topic__type-des">
+            <br>
+&nbsp; &nbsp; &nbsp;&nbsp;您好！首先感謝您在百忙之中填寫此份問卷。本問卷旨在對幫助企業申請補助，給出合理的建議。下面的問題沒有對錯之分，填寫後將會給你建議，不會對您產生任何負面影響，請您如實作答。謝謝您的支持與幫助！
+          </div>
+            <br>
+          <div class="topic__dottedLine"></div>
+      </div>
+  <form action="/query/result" method="post">
+      <div class="question">
+
+        {% for i in content.values %}
+        <p class="qtitle">{{i.content}}</p>
+        <div class="qlist">
+            {% for j in i.choice %}
+          <div>
+           <input type="radio" name="q{{i.id}}" required value="{{forloop.counter}}" />
+           <span class="votechoicename">{{j}}</span>
+          </div>
+           {% endfor %}
+        </div>
+
+        {% endfor %}
+
+
+        <div class="inputbox">
+          <p class="qtitle">請輸入你的姓名:</p>
+          <input class="inputf" type="text"  required name="username" / >
+        </div>
+        <div class="inputbox">
+          <p class="qtitle">請輸入你的電話:</p>
+          <input class="inputf" type="number" required name="userphone" / >
+        </div>
+        <div class="inputbox">
+          <p class="qtitle">請輸入你的公司:</p>
+          <input class="inputf" type="text" required name="usercompany" / >
+        </div>
+
+        <div class="sub" align="center">
+          <input  type="submit" class="btn" value="提交">
+         </div>
+        <br>
+      </div>
+    </form>
+    </div>
+    <div class="bottom">
+        ABC Limited
+    </div>
+    <br>
+
+  </body>
+<script>
+
+</script>
+</html>

@@ -22,25 +22,40 @@ def login(request):
         if(password=='123'):
             data=[]
             content={}
-            record=[]
+            result=[]
             suggestion=[]
-            with open('./static/9aoze2f2e0/question.csv')as f:
-                f_csv = csv.reader(f)
-                for idx,row in enumerate(f_csv):
-                    data.append(row)
-            content['data']=data
 
-            with open('./static/9aoze2f2e0/suggestion.csv')as f:
-                f_csv = csv.reader(f)
-                for idx,row in enumerate(f_csv):
-                    suggestion.append(row)
-            content['suggestion']=suggestion
+            file=open("./static/9aoze2f2e0/foreword.txt")
+            lines=file.readlines()
+            content['foreword']=lines[0]
 
-            with open('./static/9aoze2f2e0/record.csv')as f:
-                f_csv = csv.reader(f)
-                for idx,row in enumerate(f_csv):
-                    record.append(row)
-            content['record']=record
+            try:
+                with open('./static/9aoze2f2e0/question.csv')as f:
+                    f_csv = csv.reader(f)
+                    for idx,row in enumerate(f_csv):
+                        data.append(row)
+                content['data']=data
+            except:
+                content['data']='请重新上传'
+            try:
+                with open('./static/9aoze2f2e0/suggestion.csv')as f:
+                    f_csv = csv.reader(f)
+                    for idx,row in enumerate(f_csv):
+                        suggestion.append(row)
+                content['suggestion']=suggestion
+            except:
+                content['suggestion']='请重新上传'
+
+            try:
+                with open('./static/9aoze2f2e0/result.csv')as f:
+                    f_csv = csv.reader(f)
+                    for idx,row in enumerate(f_csv):
+                        result.append(row)
+                content['result']=result
+            except:
+                content['result']='请重新上传'
+
+
 
             return render(request, 'adminpage.html' ,{'content': content})
         else:
@@ -52,7 +67,7 @@ def upload(request,name):
     if request.method == 'POST':
         file = request.FILES.get(name,None)
         filename = name+'.csv'
-        print(filename)
+        
         if not file:
             return render(request, 'myadmin.html')
         else:
@@ -67,8 +82,13 @@ def upload(request,name):
                     f.close()
                 data=[]
                 content={}
-                record=[]
+                result=[]
                 suggestion=[]
+
+                file=open("./static/9aoze2f2e0/foreword.txt")
+                lines=file.readlines()
+                content['foreword']=lines[0]
+
                 with open('./static/9aoze2f2e0/question.csv')as f:
                     f_csv = csv.reader(f)
                     for idx,row in enumerate(f_csv):
@@ -81,26 +101,28 @@ def upload(request,name):
                         suggestion.append(row)
                 content['suggestion']=suggestion
 
-                with open('./static/9aoze2f2e0/record.csv')as f:
+                with open('./static/9aoze2f2e0/result.csv')as f:
                     f_csv = csv.reader(f)
                     for idx,row in enumerate(f_csv):
-                        record.append(row)
-                content['record']=record
+                        result.append(row)
+                content['result']=result
 
                 return render(request, 'adminpage.html',{'content': content})
 
-def delete(request,num):
-    if request.method == 'GET':
-
-        df=pd.read_csv('./static/9aoze2f2e0/record.csv',encoding="gbk")
-
-        df.drop(df.index[int(num)-2],inplace=True)
-        #print(df.head())
-        df.to_csv('./static/9aoze2f2e0/record.csv',index=None)
+def text(request):
+    if request.method == 'POST':
+        foreword=request.POST.get('foreword')
+        with open("./static/9aoze2f2e0/foreword.txt","w") as f:
+            f.writelines(foreword)
         data=[]
         content={}
-        record=[]
+        result=[]
         suggestion=[]
+
+        file=open("./static/9aoze2f2e0/foreword.txt")
+        lines=file.readlines()
+        content['foreword']=lines[0]
+
         with open('./static/9aoze2f2e0/question.csv')as f:
             f_csv = csv.reader(f)
             for idx,row in enumerate(f_csv):
@@ -113,10 +135,13 @@ def delete(request,num):
                 suggestion.append(row)
         content['suggestion']=suggestion
 
-        with open('./static/9aoze2f2e0/record.csv')as f:
+        with open('./static/9aoze2f2e0/result.csv')as f:
             f_csv = csv.reader(f)
             for idx,row in enumerate(f_csv):
-                record.append(row)
-        content['record']=record
+                result.append(row)
+        content['result']=result
 
         return render(request, 'adminpage.html' ,{'content': content})
+
+    else:
+        return render(request, 'myadmin.html')

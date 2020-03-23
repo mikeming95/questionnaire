@@ -7,5 +7,6 @@ urlpatterns = [
     path('', index, name='index'),
     path('/login', login, name='login'),
     path('/upload/<name>', upload, name='upload'),
-    path('/delete/<num>', delete, name='delete'),       
+
+    path('/text',text,name='text'),
 ]

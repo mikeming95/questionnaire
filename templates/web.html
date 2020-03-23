@@ -3,6 +3,8 @@
   <head>
   	<meta charset="utf-8">
   	<title>問卷</title>
+    {% load staticfiles %}
+    <!-- Bootstrap core CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
   </head>
   <style>
@@ -32,21 +34,24 @@
       @media screen and (max-width:800px){
         .pcmain{
            background:#fff;
-           width:75%;
-           padding:0 5%;
+           width:80%;
+           padding:0 2%;
            margin: 0 auto;
+       }
+       body {
+           min-width: 90%;
        }
       }
 
 
      #toptitle{
-         padding-top:5%;
+         padding-top:2%;
      }
      #toptitle .htitle {
          font-size: 32px;
-         line-height: 32px;
+         line-height: 12px;
          font-weight: bold;
-         margin: 0;
+         margin-top: 6%;
          padding: 0;
          text-align: center;
      }
@@ -55,7 +60,7 @@
      }
 
      .topic__inner {
-         padding: 0 2%;
+         padding: 1% 2%;
      }
      .question{
        font-size:120%;
@@ -82,13 +87,25 @@
       border-radius:5px;
      }
      .inputf{
+
        margin-left:1%;
      }
      .inputbox{
        line-height:5px;
      }
+     .opt{
+       margin-left: 1%;
+     }
+    .logo{
+      width:15%;
+      float:left;
+      margin-left: 1%;
+    }
+
+
   </style>
   <body>
+    <img class="logo" src="{% static 'logo.png' %}" ></img>
     <div class="pcmain">
       <div id="toptitle">
           <h1 class="htitle" id="htitle">調查問卷</h1>
@@ -96,7 +113,7 @@
       <div class="topic__inner">
           <div class="topic__type-des">
             <br>
-&nbsp; &nbsp; &nbsp;&nbsp;您好！首先感謝您在百忙之中填寫此份問卷。本問卷旨在對幫助企業申請補助，給出合理的建議。下面的問題沒有對錯之分，填寫後將會給你建議，不會對您產生任何負面影響，請您如實作答。謝謝您的支持與幫助！
+&nbsp; &nbsp; &nbsp;&nbsp;{{content2.foreword}}
           </div>
             <br>
           <div class="topic__dottedLine"></div>
@@ -120,12 +137,27 @@
 
         <div class="inputbox">
           <p class="qtitle">請輸入你的姓名:</p>
-          <input class="inputf" type="text"  required name="username" / >
+          <input  class="inputf" type="text"  required name="username" / >
         </div>
+
         <div class="inputbox">
           <p class="qtitle">請輸入你的電話:</p>
+          <span class="opt">
+            <select  name="countryCode" autocomplete="off" data-a-touch-header="国家/地区代码" id="auth-country-picker"  >
+              <option  data-calling-code="86" data-country-code="CN" value="86" data-a-html-content="中国 +86" selected="">
+                CN +86
+              </option>
+              <option data-calling-code="853" data-country-code="MO" value="853" data-a-html-content="澳门 +853">
+                MO +853
+              </option>
+              <option data-calling-code="852" data-country-code="HK" value="852" data-a-html-content="香港 +852">
+                HK +852
+              </option>
+            </select>
+          </span>
           <input class="inputf" type="number" required name="userphone" / >
-        </div>
+      </div>
+
         <div class="inputbox">
           <p class="qtitle">請輸入你的公司:</p>
           <input class="inputf" type="text" required name="usercompany" / >
@@ -139,7 +171,7 @@
     </form>
     </div>
     <div class="bottom">
-        ABC Limited
+        GBAIESC Limited
     </div>
     <br>
 

@@ -46,21 +46,44 @@ def result(request):
                 re_.append(df.iloc[j][col[i]])
             summ=summ+re_[int(request.POST.get(('q'+str(j+1))))-1]
 
+            exec('q_%d = %d' % (j+1 ,int(request.POST.get(('q'+str(j+1))))) )
+
+        value=[]
+        index=[]
+        for i in range(num):
+            exec('value.append(q_%d)' % (i+1) )
+            exec("index.append('q_%d')" % (i+1) )
+
+
         username=request.POST.get('username')
         userphone=request.POST.get('userphone')
         usercompany=request.POST.get('usercompany')
         countryCode=request.POST.get('countryCode')
 
-        print(countryCode)
 
         localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
         path  = "static/9aoze2f2e0/result.csv"
+        code=[username,countryCode+userphone,usercompany,summ,localtime]+value
+
+        datarecord=[]
+        with open(path,'r')as f:
+            f_csv = csv.reader(f)
+            for idx,row in enumerate(f_csv):
+                if(idx==0):
+                    datarecord.append(['username','phone','usercompany','summ','localtime']+index)
+                else:
+                    datarecord.append(row)
+        
+        with open(path, 'w',newline='') as f:
+            for i in datarecord:
+                writer = csv.writer(f)
+                writer.writerow(i)
 
 
         with open(path, 'a',newline='') as f:
             writer = csv.writer(f)
-            writer.writerow([username,countryCode+userphone,usercompany,summ,localtime])
+            writer.writerow(code)
 
 
         su=pd.read_csv('static/9aoze2f2e0/suggestion.csv',encoding='gbk')

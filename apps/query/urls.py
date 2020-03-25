@@ -6,5 +6,5 @@ app_name = 'query'
 urlpatterns = [
 
     path('result', result, name='result'),
-
+    path('questionnaire', questionairepage.as_view(), name='questionnaire'),
 ]

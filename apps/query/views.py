@@ -13,6 +13,11 @@ import csv
 
 class Index(View):
     def get(self, request):
+        return render_to_response("index.html")
+
+
+class questionairepage(View):
+    def get(self, request):
         df=pd.read_csv('static/9aoze2f2e0/question.csv',encoding='gbk')
         col = [column for column in df]
         num = max(list(df['id']))  #max id
@@ -26,10 +31,7 @@ class Index(View):
             choice=[]
             for i in range(2,len(col)-1,2):
                 choice.append(df.iloc[j][col[i]])
-
             ddict[df.iloc[j]['id']]={'id':df.iloc[j]['id'],'content':df.iloc[j][1],'choice':choice}
-
-
         return render_to_response("web.html",{'content': ddict,'content2':content2})
 
 def result(request):
@@ -74,7 +76,7 @@ def result(request):
                     datarecord.append(['username','phone','usercompany','summ','localtime']+index)
                 else:
                     datarecord.append(row)
-        
+
         with open(path, 'w',newline='') as f:
             for i in datarecord:
                 writer = csv.writer(f)

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title>GBAIESC</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'lib/bootstrap.min.css' %}">
+    <script src="{% static 'lib/jquery.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap.min.js' %}"></script>
+  	<script src="{% static 'lib/jquery.min.js' %"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <style>
+  .a1{
+    background:url({% static './1.jpg' %}) center no-repeat;
+    width:100%;
+    height:850px;
+    text-decoration:none;
+  }
+  .a2{
+    background:url({% static '3.jpg' %}) center no-repeat;
+    width:100%;
+    height:740px;
+    text-decoration:none;
+  }
+  .a3{
+    background:url({% static '6.jpg' %}) center no-repeat;
+    width:100%;
+    height:800px;
+    text-decoration:none;
+  }
+  .a4{
+    background:url({% static '5.jpg' %}) center no-repeat;
+    width:100%;
+    height:700px;
+    text-decoration:none;
+    text-align:center;
+  }
+  .ab{
+    padding:1% 16%;
+  }
+  .contactpage{
+    width:100%;
+    height:800px;
+    text-decoration:none;
+  }
+  .btn{
+     background-color: #CCCCFF;
+     padding:6px 23px;
+     border-radius:5px;
+  }
+  .title1{
+    font-size:200%;
+    color:black;
+     font-weight:bold;
+    text-decoration:none;
+  }
+  p{ margin:0 auto}
+  .title2{
+    font-size:200%;
+    color:black;
+  }
+  .title4{
+    font-size:200%;
+    color:black;
+  }
+  .title3{
+    font-size:270%;
+    color:black;
+    font-weight:bold;
+  }
+  .ch{
+    style:padding:1% 16%;
+    margin-left:25%;
+  }
+  .tb{
+    font-size:170%;
+    border-spacing: 10px 30px;
+  }
+  @media screen and (max-width:800px){
+    .a4{
+      background:url({% static '5.jpg' %}) no-repeat;
+      width:100%;
+      height:600px;
+      text-decoration:none;
+
+    }
+    .tb{
+      font-size:15%;
+    }
+    .a2{
+      background:url({% static '3.jpg' %}) no-repeat;
+      width:100%;
+      height:700px;
+      text-decoration:none;
+    }
+    .ch{
+      style:padding:4% 5%;
+      margin-left:10%;
+    }
+    .ab{
+        padding:0% 1%;
+    }
+    .title4{
+      font-size:100%;
+      color:black;
+    }
+    .title1{
+      font-size:150%;
+      color:black;
+       font-weight:bold;
+    }
+    .title2{
+      font-size:150%;
+      color:black;
+    }
+    .title3{
+      font-size:170%;
+      color:black;
+      font-weight:bold;
+    }
+  }
+
+  </style>
+
+  <body>
+    <div >
+      <div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">GBAIESC</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#">GBAIESC</a>
+        </div>
+          <div id="navbar" class="navbar-collapse collapse"  aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav">
+              <li><a></a><li>
+              <li ><a href="#" style="font-size:20px">HOME</a></li>
+              <li><a href="#about" style="font-size:20px">ABOUT US</a></li>
+              <li class="dropdown">
+                <a href="#" style="font-size:20px" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OUR SERVICE<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a style="font-size:20px" href="#china">CHINA</a></li>
+                  <li><a style="font-size:20px" href="#hongkong">HONG KONG</a></li>
+                </ul>
+              </li>
+              <li><a href="#contact" style="font-size:20px">CONTACT US</a></li>
+              <li><a href="./query/questionnaire" style="font-size:20px">QUESTIONNAIRE</a></li>
+            </ul>
+          </div><!--/.nav-collapse class="active"-->
+
+        </div>
+      </nav>
+    </div>
+    <div class="a1" align="center">
+        <br><br><br><br><br><br>
+        <img src="{% static 'logo2.png' %}" height="170" width="170"></img><br><br><br>
+        <b class="title1" style="  font-weight:bold;">粵港澳大灣區創新創業服務中心</b><br>
+        <i class="title2">Guangdong-Hong Kong-Macao</i><br>
+        <i class="title2">Greater Bay Area Innovation & Entrepreneurship Services Center</i>
+    </div>
+    <div class="a4" id="about">
+        <br><br><br><br>
+        <b class="title3" name="about" >ABOUT US</b><br><br>
+        <div class="ab" >
+          <p class="title4">  IESC (Guangdong-Hong Kong-Macao Greater Bay Area Innovation and Entrepreneurship Service Centre Ltd) is a management consultant company founded by a group of Professionals and Entrepreneurs. We provide executable solution to the top management of organizations across the private, public, and social sectors in Hong Kong, China and USA.Our pragmatic approach empowers our partner organizations with solutions, methods or tools to enhance their market competitiveness and/or operation efficiency.</p><br>
+        </div>
+        <br><br><br><br><br>
+    </div>
+
+    <div class="a2" id="china" align="center">
+        <br><br><br><br>
+        <b class="title3" name="about" >CHINA SERVICES</b><br><br>
+        <div class="ch">
+          <div class="title4"  align="left">
+            <p >1.Consultation for China Government fund</p>
+            <li>Talent Scheme</li>
+            <li>Research Scheme</li>
+            <li>Technology Scheme</li>
+            <li>Headquarter Scheme</li>
+            <p>2.Consultation for Investors pitching</p>
+            <p>3.Consultation for Company Set up</p>
+            <p>4.Professional Marketing Services</p>
+            <p>5.Professional Procurement Services</p>
+            <p>6.Incubation and Accelerators Services</p>
+            <p>7.Coordination with the government officials for company set up and marketing development</p>
+            <p>8.Business Mentoring for startups</p>
+          </div>
+        </div>
+    </div>
+
+    <div class="a3" id="hongkong" align="center">
+        <br><br><br><br>
+        <b class="title3" name="about" >HONG KONG SERVICES</b><br><br>
+        <div  class="ch">
+          <div class="title4"  align="left">
+            <p >1.Consultation for HK Government fund</p>
+            <li>IT Upgrade Fund (IUF)</li>
+            <li>China Marketing Fund (CMF)</li>
+            <li>Export Marketing Fund (EMF)</li>
+            <li>Free Trade Marketing Fund (FMF)</li>
+            <p>2.Consultation for Investors pitching introduction</p>
+            <p>3.Consultation for Company Set up</p>
+            <p>4.Business Mentoring for Startups</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="contactpage" id="contact" align="center">
+          <br><br><br><br><br><br>
+          <b class="title3" name="about" >CONTACT US</b><br><br>
+          <div style="padding:1% 16%;">
+
+            <form>
+              <table class="tb" >
+                <tr>
+                    <td>Name</td>
+                    <td><input class="inputf" type="text" required name="username" / ></td>
+                </tr>
+
+                <tr>
+                    <td>Company</td>
+                    <td><input class="inputf" type="text" required name="usercompany" / ></td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td><input class="inputf" type="text" required name="userphone" / ></td>
+                </tr>
+
+              </table>
+              <br>
+              <div class="sub" sytle="padding:10 110px">
+                <input  type="submit" class="btn" value="Submit">
+               </div>
+            </form>
+
+          </div>
+        </div>
+
+
+  </div>
+
+
+
+  </body>
+
+</html>

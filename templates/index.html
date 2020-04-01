@@ -5,15 +5,17 @@
   	<title>GBAIESC</title>
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'lib/bootstrap.min.css' %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{% static 'lib/jquery.min.js' %}"></script>
     <script src="{% static 'lib/bootstrap.min.js' %}"></script>
-  	<script src="{% static 'lib/jquery.min.js' %"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
     <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="{% static 'lib/build/js/intlTelInput.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'lib/build/css/intlTelInput.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/build/css/demo.css' %}">
   </head>
   <style>
   .a1{
@@ -62,8 +64,9 @@
   }
   p{ margin:0 auto}
   .title2{
-    font-size:200%;
-    color:black;
+    font-size:240%;
+    color:#804040;
+
   }
   .title4{
     font-size:200%;
@@ -78,20 +81,32 @@
     style:padding:1% 16%;
     margin-left:25%;
   }
-  .tb{
+
+  .pi{
+    height:45%;
+    width:40%;
+  }
+  .ctable{
+    padding:1% 16%;
     font-size:170%;
-    border-spacing: 10px 30px;
+
   }
   @media screen and (max-width:800px){
+    .ctable{
+      text-align:left;
+      padding:1% 1%;
+      font-size:100%;
+    }
+    .pi{
+      height:25%;
+      width:70%;
+    }
     .a4{
       background:url({% static '5.jpg' %}) no-repeat;
       width:100%;
       height:600px;
       text-decoration:none;
 
-    }
-    .tb{
-      font-size:15%;
     }
     .a2{
       background:url({% static '3.jpg' %}) no-repeat;
@@ -117,7 +132,8 @@
     }
     .title2{
       font-size:150%;
-      color:black;
+      color:#804040;
+
     }
     .title3{
       font-size:170%;
@@ -156,22 +172,21 @@
                 </ul>
               </li>
               <li><a href="#contact" style="font-size:20px">CONTACT US</a></li>
-              <li><a href="./query/questionnaire" style="font-size:20px">QUESTIONNAIRE</a></li>
+              <li><a href="#contact" onclick="questionnaire()" style="font-size:20px">QUESTIONNAIRE</a></li>
             </ul>
-          </div><!--/.nav-collapse class="active"-->
+          </div><!--/.nav-collapse class="active" href="./query/questionnaire"-->
 
         </div>
       </nav>
     </div>
     <div class="a1" align="center">
         <br><br><br><br><br><br>
-        <img src="{% static 'logo2.png' %}" height="170" width="170"></img><br><br><br>
-        <b class="title1" style="  font-weight:bold;">粵港澳大灣區創新創業服務中心</b><br>
+        <img class="pi" src="{% static 'logo3.png' %}" ></img><br><br>
         <i class="title2">Guangdong-Hong Kong-Macao</i><br>
         <i class="title2">Greater Bay Area Innovation & Entrepreneurship Services Center</i>
     </div>
     <div class="a4" id="about">
-        <br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
         <b class="title3" name="about" >ABOUT US</b><br><br>
         <div class="ab" >
           <p class="title4">  IESC (Guangdong-Hong Kong-Macao Greater Bay Area Innovation and Entrepreneurship Service Centre Ltd) is a management consultant company founded by a group of Professionals and Entrepreneurs. We provide executable solution to the top management of organizations across the private, public, and social sectors in Hong Kong, China and USA.Our pragmatic approach empowers our partner organizations with solutions, methods or tools to enhance their market competitiveness and/or operation efficiency.</p><br>
@@ -180,7 +195,7 @@
     </div>
 
     <div class="a2" id="china" align="center">
-        <br><br><br><br>
+        <br><br><br><br><br>
         <b class="title3" name="about" >CHINA SERVICES</b><br><br>
         <div class="ch">
           <div class="title4"  align="left">
@@ -201,7 +216,7 @@
     </div>
 
     <div class="a3" id="hongkong" align="center">
-        <br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
         <b class="title3" name="about" >HONG KONG SERVICES</b><br><br>
         <div  class="ch">
           <div class="title4"  align="left">
@@ -220,40 +235,73 @@
 
       <div class="contactpage" id="contact" align="center">
           <br><br><br><br><br><br>
-          <b class="title3" name="about" >CONTACT US</b><br><br>
-          <div style="padding:1% 16%;">
 
-            <form>
-              <table class="tb" >
+          <b class="title3" name="about" >CONTACT US</b><br><br>
+          <div align="center" >
+            <p>Phone:+852 2959 1321&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:cs@gbaiesc.vip</p>
+          </div>
+          <form action="/query/questionnaire" method="post">
+          <div class="ctable">
+              <table  >
                 <tr>
                     <td>Name</td>
-                    <td><input class="inputf" type="text" required name="username" / ></td>
+                    <td ><input class="form-control" type="text" required name="username" / ></td>
                 </tr>
-
                 <tr>
-                    <td>Company</td>
-                    <td><input class="inputf" type="text" required name="usercompany" / ></td>
+                    <td>&nbsp;</td><td>&nbsp; </td>
+                </tr>
+                <tr>
+                    <td >Company&nbsp;&nbsp;</td>
+                    <td><input class="form-control" type="text" required name="usercompany" / ></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td><td>&nbsp; </td>
                 </tr>
                 <tr>
                     <td>Phone</td>
-                    <td><input class="inputf" type="text" required name="userphone" / ></td>
+                    <td>              <div align="left">
+                                  <input minlength="" id="phone" name="userphone" type="tel">
+                                  </div></td>
                 </tr>
 
               </table>
               <br>
-              <div class="sub" sytle="padding:10 110px">
+              <div class="sub" align="center">
                 <input  type="submit" class="btn" value="Submit">
                </div>
-            </form>
-
-          </div>
         </div>
+      </form>
+    </div>
 
 
-  </div>
 
 
+    <script>
+
+      function questionnaire(){
+
+        alert("Please fill the form of contact us first");
+
+
+      }
+
+
+      $("#phone").intlTelInput({
+        allowExtensions: true,
+        autoFormat: true,
+        autoHideDialCode: false,
+        autoPlaceholder: true,
+        //defaultCountry: "auto",
+        //nationalMode: false,
+        //numberType: "MOBILE",
+        //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+        //preferredCountries: ['hk'],
+        //utilsScript: "{lib//utils.js"
+      });
+
+      var input = $("#phone");
+
+    </script>
 
   </body>
-
 </html>

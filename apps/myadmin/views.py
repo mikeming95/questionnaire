@@ -16,10 +16,16 @@ def index(request):
 
         return render(request, 'myadmin.html')
 
+
+
 def login(request):
     if request.method == 'POST':
         password=request.POST.get('password')
-        if(password=='123'):
+        with open("./static/9aoze2f2e0/password.txt","r") as f:
+            lines=f.readlines()
+            txtpassword=lines[0]
+        if(password == txtpassword):
+
             data=[]
             content={}
             result=[]
@@ -55,7 +61,7 @@ def login(request):
             except:
                 content['result']='请重新上传'
 
-
+            content['password'] = txtpassword
 
             return render(request, 'adminpage.html' ,{'content': content})
         else:
@@ -67,7 +73,7 @@ def upload(request,name):
     if request.method == 'POST':
         file = request.FILES.get(name,None)
         filename = name+'.csv'
-        
+
         if not file:
             return render(request, 'myadmin.html')
         else:
@@ -84,7 +90,10 @@ def upload(request,name):
                 content={}
                 result=[]
                 suggestion=[]
-
+                with open("./static/9aoze2f2e0/password.txt","r") as f:
+                    lines=f.readlines()
+                    txtpassword=lines[0]
+                content['password'] = txtpassword
                 file=open("./static/9aoze2f2e0/foreword.txt")
                 lines=file.readlines()
                 content['foreword']=lines[0]
@@ -119,6 +128,11 @@ def text(request):
         result=[]
         suggestion=[]
 
+        with open("./static/9aoze2f2e0/password.txt","r") as f:
+            lines=f.readlines()
+            txtpassword=lines[0]
+        content['password'] = txtpassword
+
         file=open("./static/9aoze2f2e0/foreword.txt")
         lines=file.readlines()
         content['foreword']=lines[0]
@@ -140,6 +154,45 @@ def text(request):
             for idx,row in enumerate(f_csv):
                 result.append(row)
         content['result']=result
+        return render(request, 'adminpage.html' ,{'content': content})
+
+    else:
+        return render(request, 'myadmin.html')
+
+
+
+def changepassword(request):
+    if request.method == 'POST':
+        password=request.POST.get('password')
+        with open("./static/9aoze2f2e0/password.txt","w") as f:
+            f.writelines(password)
+        data=[]
+        content={}
+        result=[]
+        suggestion=[]
+
+        file=open("./static/9aoze2f2e0/foreword.txt")
+        lines=file.readlines()
+        content['foreword']=lines[0]
+
+        with open('./static/9aoze2f2e0/question.csv')as f:
+            f_csv = csv.reader(f)
+            for idx,row in enumerate(f_csv):
+                data.append(row)
+        content['data']=data
+
+        with open('./static/9aoze2f2e0/suggestion.csv')as f:
+            f_csv = csv.reader(f)
+            for idx,row in enumerate(f_csv):
+                suggestion.append(row)
+        content['suggestion']=suggestion
+
+        with open('./static/9aoze2f2e0/result.csv')as f:
+            f_csv = csv.reader(f)
+            for idx,row in enumerate(f_csv):
+                result.append(row)
+        content['result']=result
+        content['password'] = password
 
         return render(request, 'adminpage.html' ,{'content': content})
 

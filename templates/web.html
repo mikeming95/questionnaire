@@ -5,6 +5,7 @@
   	<title>問卷</title>
     {% load staticfiles %}
     <!-- Bootstrap core CSS -->
+    <script src="{% static 'lib/jquery.min.js' %}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
   </head>
   <style>
@@ -104,11 +105,13 @@
 
 
   </style>
-  <body>
+  <body oncopy="alert('Copy not allowed!');return false;">
     <div class="pcmain">
       <div id="toptitle">
           <h1 class="htitle" id="htitle">調查問卷</h1>
       </div>
+
+
       <div class="topic__inner">
           <div class="topic__type-des">
             <br>
@@ -121,53 +124,37 @@
       <div class="question">
 
         {% for i in content.values %}
+      <div id="q{{forloop.counter}}" style ="display:none">
         <p class="qtitle">{{i.content}}</p>
-        <div class="qlist">
+        <div  class="qlist">
             {% for j in i.choice %}
-          <div>
-           <input type="radio" name="q{{i.id}}" required value="{{forloop.counter}}" />
-           <span class="votechoicename">{{j}}</span>
+          <div >
+              <input type="radio" id="input{{i.id}}" name="q{{i.id}}" required value="{{forloop.counter}}" />
+              <span class="votechoicename">{{j}}</span>
           </div>
            {% endfor %}
+
         </div>
-
-        {% endfor %}
-
-
-        <div class="inputbox">
-          <p class="qtitle">請輸入你的姓名:</p>
-          <input  class="inputf" type="text"  required name="username" / >
-        </div>
-
-        <div class="inputbox">
-          <p class="qtitle">請輸入你的電話:</p>
-          <span class="opt">
-            <select  name="countryCode" autocomplete="off" data-a-touch-header="国家/地区代码" id="auth-country-picker"  >
-              <option  data-calling-code="86" data-country-code="CN" value="86" data-a-html-content="中国 +86" selected="">
-                CN +86
-              </option>
-              <option data-calling-code="853" data-country-code="MO" value="853" data-a-html-content="澳门 +853">
-                MO +853
-              </option>
-              <option data-calling-code="852" data-country-code="HK" value="852" data-a-html-content="香港 +852">
-                HK +852
-              </option>
-            </select>
-          </span>
-          <input class="inputf" type="number" required name="userphone" / >
+        <div align="center">
+          <button class="btn" id="btn{{forloop.counter}}" onclick="test({{forloop.counter}})">Next</button>
       </div>
-
-        <div class="inputbox">
-          <p class="qtitle">請輸入你的公司:</p>
-          <input class="inputf" type="text" required name="usercompany" / >
+          </div>
+        {% endfor %}
+        <br>
+        <div align="center">
+          <button id="bt1"  class="btn" onclick="test1()">開始測試</button>
         </div>
 
         <div class="sub" align="center">
-          <input  type="submit" class="btn" value="提交">
+          <input style="display:none" id="btn" type="submit" class="btn" value="提交">
          </div>
+
+
         <br>
       </div>
     </form>
+
+
     </div>
     <div class="bottom">
         GBAIESC Limited
@@ -176,6 +163,46 @@
 
   </body>
 <script>
+function test1(){
+  document.getElementById("q1").style.display="block";
+  document.getElementById("bt1").style.display="none";
+}
+
+function test(num){
+  var str = (num+1).toString();
+  var question_ = "q"+str;
+  var num_ = {{content2.num}};
+  var num1 = num+1;
+  var num2 = num_+1
+
+  var nowchoic="input[name='q"+num+"']:checked";
+  var a = $(nowchoic).val();
+  if(a){
+    {% for i in content.values %}
+    var str1 = ({{forloop.counter}}+1).toString();
+    var question = "q"+str1;
+
+    if(question != "q"+num2){
+      if(question == question_){
+      document.getElementById(question).style.display="block";
+      }
+      else{
+        document.getElementById(question).style.display="none";
+        document.getElementById("q1").style.display="none";
+      }
+    }
+    {% endfor %}
+    if (num_ == num+1){
+      var question = "btn"+num_;
+      document.getElementById(question).style.display="none";
+      document.getElementById("btn").style.display="block";
+    }
+  }
+  else{
+
+  }
+}
+
 
 </script>
 </html>

@@ -1,10 +1,6 @@
-id,content,question_a,score_a,question_b,score_b,question_c,score_c
-1,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
-2,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
-3,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
-4,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
-5,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
-6,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
-7,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
-8,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
-9,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3
+id,content,question_a,score_a,question_b,score_b,question_c,score_c,question_d,score_d
+1,1.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3,na,0
+2,2.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3,na,0
+3,3.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3,na,0
+4,4.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3,不滿意,3
+5,5.您對我們的業務辦理流程是否滿意：,非常滿意,1,滿意,2,不滿意,3,na,0

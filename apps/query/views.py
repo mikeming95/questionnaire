@@ -17,7 +17,16 @@ class Index(View):
 
 
 class questionairepage(View):
-    def get(self, request):
+    def post(self, request):
+        username=request.POST.get('username')
+        usercompany=request.POST.get('usercompany')
+        userphone=request.POST.get('userphone')
+
+        if(len(userphone)>10):
+            userphone = '86' + userphone
+        else:
+            userphone = '852' + userphone
+
         df=pd.read_csv('static/9aoze2f2e0/question.csv',encoding='gbk')
         col = [column for column in df]
         num = max(list(df['id']))  #max id
@@ -26,13 +35,21 @@ class questionairepage(View):
         file=open("./static/9aoze2f2e0/foreword.txt")
         lines=file.readlines()
         content2['foreword']=lines[0]
-
+        content2['num']=num
         for j in range(num):
             choice=[]
             for i in range(2,len(col)-1,2):
-                choice.append(df.iloc[j][col[i]])
+                if(df.iloc[j][col[i]]== 'na' ):
+                    pass
+                else:
+                    choice.append(df.iloc[j][col[i]])
+
             ddict[df.iloc[j]['id']]={'id':df.iloc[j]['id'],'content':df.iloc[j][1],'choice':choice}
-        return render_to_response("web.html",{'content': ddict,'content2':content2})
+        response = render_to_response("web.html",{'content': ddict,'content2':content2})
+        response.set_cookie('username',username)
+        response.set_cookie('usercompany',usercompany)
+        response.set_cookie('userphone',userphone)
+        return response
 
 def result(request):
     if request.method == 'POST':
@@ -57,16 +74,14 @@ def result(request):
             exec("index.append('q_%d')" % (i+1) )
 
 
-        username=request.POST.get('username')
-        userphone=request.POST.get('userphone')
-        usercompany=request.POST.get('usercompany')
-        countryCode=request.POST.get('countryCode')
-
+        username=request.COOKIES.get('username')
+        userphone=request.COOKIES.get('userphone')
+        usercompany=request.COOKIES.get('usercompany')
 
         localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
         path  = "static/9aoze2f2e0/result.csv"
-        code=[username,countryCode+userphone,usercompany,summ,localtime]+value
+        code=[username,userphone,usercompany,summ,localtime]+value
 
         datarecord=[]
         with open(path,'r')as f:

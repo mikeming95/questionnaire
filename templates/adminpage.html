@@ -13,40 +13,52 @@
 
   <div id="menu" style="background-color:#EEEEEE;width:300px;float:left;margin-left:3%;">
 
-    <div>
-      <h3>Download</h3>
-      <button  type="button" style="" class="btn" onclick="download_question();">下载question.csv文件</button>
-      <br>
-      <button  type="button" style="margin-top:5px" class="btn" onclick="result_question();">下载result.csv文件</button>
-      <br>
-      <button  type="button" style="margin-top:5px" class="btn" onclick="suggestion_question();">下载suggestion.csv文件</button>
-
-    </div>
 
     <div style="margin-top:2%">
-      <h3>Upload-(utf8 csv格式)</h3>
 
+      <h2>Question</h2>
+      <b>下载question.csv</b><br>
+      <button  type="button" style="" class="btn" onclick="download_question();">下载question.csv文件</button>
+      <br><br>
       <b>更新question.csv</b><br>
-      <a>请以question.csv格式/名字上传</a>
+      <a>请以question.csv格式/名字上传(utf8 csv)</a>
       <form  action="/myadmin/upload/question" method="post" enctype="multipart/form-data">
           <input type="file" name="question"><br>
           <input type="submit" value="提交">
       </form>
 
-      <b>更新suggestion.csv</b><br>
-      <a>请以suggestion.csv格式/名字上传</a>
-      <form  action="/myadmin/upload/suggestion" method="post" enctype="multipart/form-data">
-          <input type="file" name="suggestion"><br>
-          <input type="submit" value="提交">
-      </form>
 
+      <h2>Result</h2>
+      <b>下载result.csv</b><br>
+      <button  type="button" style="margin-top:5px" class="btn" onclick="result_question();">下载result.csv文件</button>
+      <br><br>
       <b>更新result.csv</b><br>
-      <a>请以result.csv格式/名字上传</a>
+      <a>请以result.csv格式/名字上传(utf8 csv)</a>
       <form  action="/myadmin/upload/result" method="post" enctype="multipart/form-data">
           <input type="file" name="result"><br>
           <input type="submit" value="提交">
       </form>
 
+      <h2>Suggestion</h2>
+      <b>下载suggestion.csv</b><br>
+      <button  type="button" style="margin-top:5px" class="btn" onclick="suggestion_question();">下载suggestion.csv文件</button>
+      <br><br>
+      <b>更新suggestion.csv</b><br>
+      <a>请以suggestion.csv格式/名字上传(utf8 csv)</a>
+      <form  action="/myadmin/upload/suggestion" method="post" enctype="multipart/form-data">
+          <input type="file" name="suggestion"><br>
+          <input type="submit" value="提交">
+      </form>
+
+
+      <form action="/myadmin/changepassword"  method="post">
+        <a>Admin password</a><br>
+        <input required type="text" name="password" />
+        <input type="submit" value="修改"/>
+      </form>
+      <button onclick="seepassword()">查看密码</button>
+      <a style="display:none" id="psd">Password:{{content.password}}</a>
+      <br><br>
     </div>
 </div>
 
@@ -123,6 +135,11 @@
     }
     function suggestion_question(){
       window.open("/static/9aoze2f2e0/suggestion.csv");
+    }
+    function seepassword(){
+      //document.getElenentByID("psd").style.display="block";
+      document.getElementById("psd").style.display ='block';
+
     }
   </script>
 
